@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db transparent;
+  }
+  body {
+    @apply bg-white text-juri-ink font-dmSans antialiased;
+  }
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #d1d5db;
+    border-radius: 9999px;
+  }
+}
+
+@layer utilities {
+  .marquee-mask {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+  }
+
+  /* Red-only hero mesh — no indigo/teal */
+  .hero-mesh-bg {
+    background-image:
+      radial-gradient(
+        ellipse 90% 70% at 15% 20%,
+        rgba(220, 53, 69, 0.10) 0%,
+        transparent 55%
+      ),
+      radial-gradient(
+        ellipse 80% 60% at 85% 75%,
+        rgba(220, 53, 69, 0.06) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse 70% 50% at 50% 100%,
+        rgba(220, 53, 69, 0.07) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 55% 15%,
+        rgba(255, 255, 255, 0.98) 0%,
+        transparent 45%
+      );
+    background-size: 120% 120%, 130% 130%, 100% 100%, 100% 100%;
+  }
+}
