@@ -4,7 +4,6 @@ export const NAV_LINKS = [
   { label: "Features", href: "#features" },
   { label: "Testimonials", href: "#testimonials" },
   { label: "Pricing", href: "#pricing" },
-  { label: "About", href: "#about" },
 ]
 
 /** @type {{ id: string; title: string; description: string; icon: string }[]} */

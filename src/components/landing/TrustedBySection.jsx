@@ -1,4 +1,4 @@
-import { TRUSTED_FIRMS } from "../utils/constants"
+import { TRUSTED_FIRMS } from "../../utils/constants"
 
 /**
  * Infinite horizontal marquee of firm names (placeholder logos).

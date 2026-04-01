@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import PropTypes from "prop-types"
 import { motion as Motion, AnimatePresence } from "framer-motion"
-import { NAV_LINKS } from "../utils/constants"
-import { useScrollAnimation } from "../hooks/useScrollAnimation"
-import gavelIcon from "../assets/Pasted image.png"
+import { NAV_LINKS } from "../../utils/constants"
+import { useScrollAnimation } from "../../hooks/useScrollAnimation"
+import gavelIcon from "../../assets/Pasted image.png"
 
 const SECTION_IDS = NAV_LINKS.map((l) => l.href.replace("#", ""))
 
@@ -68,7 +68,7 @@ const JurinexLogo = ({ scrolled }) => (
 
 JurinexLogo.propTypes = { scrolled: PropTypes.bool }
 
-const Navbar = ({ onRequestDemo, onLogin } = {}) => {
+const Navbar = ({ onRequestDemo, onLogin, onSectionNav } = {}) => {
   const { scrolled } = useScrollAnimation({ thresholdPx: 40 })
   const activeSection = useActiveSection()
   const [menuOpen, setMenuOpen] = useState(false)
@@ -115,7 +115,10 @@ const Navbar = ({ onRequestDemo, onLogin } = {}) => {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
+                  onClick={(e) => {
+                    if (onSectionNav) { e.preventDefault(); onSectionNav(link.href.replace("#", "")) }
+                    else handleNavClick(e, link.href)
+                  }}
                   className={`relative text-sm font-bold uppercase tracking-wider transition-colors duration-300 ${
                     scrolled
                       ? isActive ? "text-gold" : "text-gray-800 hover:text-gold"
@@ -207,7 +210,10 @@ const Navbar = ({ onRequestDemo, onLogin } = {}) => {
                     initial={{ opacity: 0, x: -16 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.05, duration: 0.25 }}
-                    onClick={(e) => handleNavClick(e, link.href, () => setMenuOpen(false))}
+                    onClick={(e) => {
+                      if (onSectionNav) { e.preventDefault(); setMenuOpen(false); onSectionNav(link.href.replace("#", "")) }
+                      else handleNavClick(e, link.href, () => setMenuOpen(false))
+                    }}
                     className={`rounded-xl px-4 py-3 font-dmSans text-sm font-semibold uppercase tracking-wider transition-colors ${
                       isActive
                         ? "bg-gold/10 text-gold"

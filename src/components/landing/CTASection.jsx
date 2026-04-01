@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
 import { motion as Motion } from "framer-motion"
-import { CTA_COPY } from "../utils/constants"
+import { CTA_COPY } from "../../utils/constants"
 
 /**
  * Compact card-style red CTA section.

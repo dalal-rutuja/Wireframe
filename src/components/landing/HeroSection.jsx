@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import { motion as Motion } from "framer-motion"
-import { HERO_COPY } from "../utils/constants"
-import heroImage from "../assets/image.jpg"
+import { HERO_COPY } from "../../utils/constants"
+import heroImage from "../../assets/image.jpg"
 
 const stagger = {
   hidden: { opacity: 0 },
@@ -106,7 +106,7 @@ const HeroSection = ({ onRequestDemo, onLogin } = {}) => {
               className="rounded-full bg-gold px-8 py-3 text-center text-sm font-semibold text-white shadow-md shadow-gold/30"
               aria-label="Request a demo of JuriNex"
               onClick={onRequestDemo}
-              whileHover={{ scale: 1.05, boxShadow: "0 8px 28px rgba(185,140,60,0.45)" }}
+              whileHover={{ scale: 1.05, boxShadow: "0 8px 28px rgba(224,51,74,0.45)" }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 20 }}
             >

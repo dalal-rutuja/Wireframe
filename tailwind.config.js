@@ -20,10 +20,10 @@ export default {
           card: "#101E30",
         },
         gold: {
-          DEFAULT: "#DC3545",
-          light: "#EF4444",
-          muted: "#B91C1C",
-          warm: "#C9A84C",
+          DEFAULT: "#E0334A",
+          light: "#F04560",
+          muted: "#C42B3E",
+          warm: "#B82438",
         },
         juri: {
           teal: "#6B7280",
@@ -37,7 +37,8 @@ export default {
         },
       },
       fontFamily: {
-        playfair: ['"Playfair Display"', "Georgia", "serif"],
+        // Map "playfair" to DM Sans so the whole website uses one font.
+        playfair: ['"DM Sans"', "system-ui", "sans-serif"],
         dmSans: ['"DM Sans"', "system-ui", "sans-serif"],
       },
       keyframes: {

@@ -46,17 +46,17 @@
     background-image:
       radial-gradient(
         ellipse 90% 70% at 15% 20%,
-        rgba(220, 53, 69, 0.10) 0%,
+        rgba(224, 51, 74, 0.10) 0%,
         transparent 55%
       ),
       radial-gradient(
         ellipse 80% 60% at 85% 75%,
-        rgba(220, 53, 69, 0.06) 0%,
+        rgba(224, 51, 74, 0.06) 0%,
         transparent 50%
       ),
       radial-gradient(
         ellipse 70% 50% at 50% 100%,
-        rgba(220, 53, 69, 0.07) 0%,
+        rgba(224, 51, 74, 0.07) 0%,
         transparent 50%
       ),
       radial-gradient(

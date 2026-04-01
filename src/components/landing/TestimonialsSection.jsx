@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react"
 import { motion as Motion } from "framer-motion"
-import legalBg from "../assets/image.jpg"
+import legalBg from "../../assets/image.jpg"
 
 const TESTIMONIALS = [
     {

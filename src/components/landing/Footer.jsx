@@ -1,6 +1,6 @@
-import gavelIcon from "../assets/Pasted image.png"
+import gavelIcon from "../../assets/Pasted image.png"
 
-const Footer = () => {
+const Footer = ({ onOpenPolicy, onGetInTouch }) => {
   const year = new Date().getFullYear()
 
   return (
@@ -13,6 +13,7 @@ const Footer = () => {
           </p>
           <button
             type="button"
+            onClick={onGetInTouch}
             className="rounded-lg bg-gold px-6 py-2.5 font-dmSans text-sm font-semibold text-white transition-all hover:bg-gold/90 active:scale-[0.98]"
           >
             Get in touch
@@ -60,14 +61,22 @@ const Footer = () => {
               <p className="font-dmSans text-sm font-semibold text-juri-ink">Legal</p>
               <ul className="mt-3 space-y-2">
                 <li>
-                  <a href="#terms" className="font-dmSans text-sm text-juri-muted hover:text-juri-ink">
+                  <button
+                    type="button"
+                    onClick={() => onOpenPolicy?.("terms")}
+                    className="font-dmSans text-sm text-juri-muted transition hover:text-gold"
+                  >
                     Terms &amp; Conditions
-                  </a>
+                  </button>
                 </li>
                 <li>
-                  <a href="#privacy" className="font-dmSans text-sm text-juri-muted hover:text-juri-ink">
+                  <button
+                    type="button"
+                    onClick={() => onOpenPolicy?.("dpdpa")}
+                    className="font-dmSans text-sm text-juri-muted transition hover:text-gold"
+                  >
                     Privacy Policy
-                  </a>
+                  </button>
                 </li>
               </ul>
             </div>

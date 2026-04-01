@@ -180,7 +180,7 @@ const PricingSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                className="group flex flex-col rounded-2xl border border-juri-line bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-gold hover:shadow-[0_8px_32px_rgba(220,53,69,0.18)]"
+                className="group flex flex-col rounded-2xl border border-juri-line bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-gold hover:shadow-[0_8px_32px_rgba(224,51,74,0.18)]"
               >
                 {/* Plan name */}
                 <h3 className="text-center font-playfair text-lg font-semibold text-juri-ink transition-colors duration-300 group-hover:text-gold">

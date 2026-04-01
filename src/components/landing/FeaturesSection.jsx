@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
 import { motion as Motion } from "framer-motion"
-import { FEATURES_CARDS } from "../utils/constants"
+import { FEATURES_CARDS } from "../../utils/constants"
 import SummaryMock from "./feature-mocks/SummaryMock"
 import DraftMock from "./feature-mocks/DraftMock"
 import CiteMock from "./feature-mocks/CiteMock"
@@ -87,7 +87,7 @@ const FeatureCard = ({ feature, index }) => {
         "border border-slate-100",
         "shadow-[0_4px_24px_rgba(0,0,0,0.06)]",
         "transition-shadow duration-300",
-        "hover:shadow-[0_16px_56px_rgba(0,0,0,0.10),0_2px_12px_rgba(220,53,69,0.08)]",
+        "hover:shadow-[0_16px_56px_rgba(0,0,0,0.10),0_2px_12px_rgba(224,51,74,0.08)]",
         isLeft ? "md:mr-auto md:ml-0" : "md:ml-auto md:mr-0",
       ].join(" ")}
     >
