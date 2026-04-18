@@ -88,7 +88,7 @@ const ContactPage = ({ onBackToHome, onNavigateLogin, onOpenDemo, onSectionNav }
           initial="hidden"
           animate="show"
         >
-          <h1 className="font-playfair text-4xl font-bold text-juri-ink sm:text-5xl">
+          <h1 className="font-dmSans text-4xl font-bold text-juri-ink sm:text-5xl">
             Contact Us
           </h1>
           <p className="mt-3 font-dmSans text-base text-juri-muted">

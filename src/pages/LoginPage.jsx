@@ -75,7 +75,7 @@ const LoginPage = ({ onBackToHome, onNavigateRegister, onLogin }) => {
 
         {/* Heading */}
         <Motion.div className="mb-8 text-center" custom={1} variants={fadeUp} initial="hidden" animate="show">
-          <h1 className="font-playfair text-3xl font-bold text-juri-ink">
+          <h1 className="font-dmSans text-3xl font-bold text-juri-ink">
             Welcome to JuriNex
           </h1>
           <p className="mt-2 font-dmSans text-base text-juri-muted">
@@ -218,7 +218,7 @@ const LoginPage = ({ onBackToHome, onNavigateRegister, onLogin }) => {
         {/* Text content */}
         <div className="absolute inset-0 flex flex-col justify-end p-12 pb-40">
           <Motion.h2
-            className="font-playfair text-4xl font-bold leading-tight text-white xl:text-5xl"
+            className="font-dmSans text-4xl font-bold leading-tight text-white xl:text-5xl"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.2 } }}
           >

@@ -139,11 +139,8 @@ const CASES = [
 ]
 
 const CASE_STATS = [
-  { label: "Total Active Cases",             value: 10 },
-  { label: "Cases Pending Review",           value: 0  },
-  { label: "Upcoming Hearings (Next 7 Days)", value: 0  },
-  { label: "Documents Uploaded This Month",  value: 45 },
-  { label: "Today's Hearings",               value: 0  },
+  { label: "Total Active Cases", value: 10 },
+  { label: "Disposed Cases", value: 0 },
 ]
 
 const DASH_STATS = [
@@ -156,6 +153,44 @@ const DASH_STATS = [
 const TABS = ["Ongoing", "Pending", "Disposed", "Draft"]
 const TAB_COUNTS = { Ongoing: 10, Pending: 0, Disposed: 0, Draft: 0 }
 const RECORDS_PER_PAGE_OPTIONS = [5, 10, 20]
+const QUICK_ACTIONS = [
+  {
+    id: "cases",
+    title: "Case Management",
+    description: "Create and manage your case files, documents, and evidence in one place.",
+    cta: "Manage Cases",
+    icon: (
+      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 12v4m-2-2h4" />
+      </svg>
+    ),
+  },
+  {
+    id: "drafting",
+    title: "Drafting Enhancement",
+    description: "Use AI drafting tools to generate and refine legal drafts faster.",
+    cta: "Review Draft",
+    icon: (
+      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M17 3l4 4-1 1-4-4 1-1z" />
+      </svg>
+    ),
+  },
+  {
+    id: "chat",
+    title: "Chat Assistance",
+    description: "Get legal research help and quick contextual answers through chat.",
+    cta: "Open Chat",
+    icon: (
+      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+      </svg>
+    ),
+  },
+]
 
 /* ── Sidebar nav ── */
 const PRIMARY_NAV = [
@@ -268,7 +303,7 @@ Counter.propTypes = { target: PropTypes.number.isRequired }
 const DashboardOverview = ({ displayName }) => (
   <div className="p-6 lg:p-8">
     <div className="mb-6">
-      <h1 className="font-playfair text-2xl font-bold text-gray-900">Dashboard</h1>
+      <h1 className="font-dmSans text-2xl font-bold text-gray-900">Dashboard</h1>
       <p className="mt-1 font-dmSans text-sm text-gray-500">Welcome back, {displayName}</p>
     </div>
 
@@ -285,7 +320,7 @@ const DashboardOverview = ({ displayName }) => (
           <p className="mt-2 font-dmSans text-3xl font-bold text-gray-900">
             <Counter target={stat.value} />
           </p>
-          <p className="mt-1 font-dmSans text-xs text-emerald-600">{stat.change}</p>
+          <p className="mt-1 font-dmSans text-xs font-medium" style={{ color: "#E0334A" }}>{stat.change}</p>
         </Motion.div>
       ))}
     </div>
@@ -293,7 +328,7 @@ const DashboardOverview = ({ displayName }) => (
     {/* AI Insights banner */}
     <Motion.div
       className="relative overflow-hidden rounded-xl p-6 text-white"
-      style={{ background: "linear-gradient(135deg, #E0334A 0%, #B91C1C 100%)" }}
+      style={{ background: "linear-gradient(135deg, #E0334A 0%, #C42B3E 100%)" }}
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.32, duration: 0.4 }}
@@ -305,7 +340,7 @@ const DashboardOverview = ({ displayName }) => (
       />
       <div className="relative flex items-center justify-between gap-6">
         <div>
-          <h3 className="font-playfair text-xl font-bold">Continue where you left off</h3>
+          <h3 className="font-dmSans text-xl font-bold">Continue where you left off</h3>
           <p className="mt-1 font-dmSans text-sm text-white/80">
             1 citation check in progress · 2 drafts awaiting review
           </p>
@@ -339,7 +374,7 @@ const CaseBriefs = () => {
         {/* Page header */}
         <div className="flex items-start justify-between mb-10">
           <div>
-            <h1 className="font-playfair text-2xl font-bold text-gray-900">Case Briefs</h1>
+            <h1 className="font-dmSans text-2xl font-bold text-gray-900">Case Briefs</h1>
             <p className="mt-0.5 font-dmSans text-sm text-gray-500">
               Manage, track, and analyze all your cases in one place.
             </p>
@@ -449,7 +484,7 @@ const CaseBriefs = () => {
                       {c.nextHearing}
                     </td>
                     <td className="px-5 py-5">
-                      <span className="inline-flex items-center rounded-full bg-emerald-50 px-3 py-1 font-dmSans text-xs font-semibold text-emerald-700 ring-1 ring-emerald-200">
+                      <span className="inline-flex items-center rounded-full px-3 py-1 font-dmSans text-xs font-semibold" style={{ backgroundColor: "#FEF2F2", color: "#E0334A", boxShadow: "inset 0 0 0 1px #FECACA" }}>
                         {c.status}
                       </span>
                     </td>
@@ -554,7 +589,7 @@ const Placeholder = ({ label }) => (
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
         </svg>
       </div>
-      <h2 className="font-playfair text-xl font-semibold text-gray-900">{label}</h2>
+      <h2 className="font-dmSans text-xl font-semibold text-gray-900">{label}</h2>
       <p className="mt-1 font-dmSans text-sm text-gray-500">This section is coming soon.</p>
     </div>
   </div>
@@ -562,7 +597,7 @@ const Placeholder = ({ label }) => (
 Placeholder.propTypes = { label: PropTypes.string }
 
 /* ══════════════════ Cases List page (Create New Case nav) ══════════════════ */
-const CasesListPage = ({ displayName }) => {
+const CasesListPage = ({ displayName, onNavigate }) => {
   const [activeTab, setActiveTab]   = useState("Ongoing")
   const [currentPage, setCurrentPage] = useState(1)
   const [recordsPerPage, setRecordsPerPage] = useState(5)
@@ -575,14 +610,22 @@ const CasesListPage = ({ displayName }) => {
       <div className="mx-auto w-full max-w-[1500px] px-6 py-7 lg:px-8">
 
         {/* Greeting header */}
-        <div className="mb-6">
-          <h1 className="font-playfair text-3xl sm:text-4xl font-bold text-gray-900">
+        <div className="mb-6 flex items-center justify-between">
+          <h1 className="font-dmSans text-3xl sm:text-4xl font-bold text-gray-900">
             Hello, Adv. {displayName.split(" ")[0]}
           </h1>
+          <button
+            type="button"
+            onClick={() => onNavigate?.("cases")}
+            className="flex-shrink-0 rounded-lg px-5 py-2.5 font-dmSans text-sm font-semibold text-white shadow-sm transition hover:opacity-90 active:scale-[0.98]"
+            style={{ backgroundColor: "#E0334A" }}
+          >
+            Create New Case
+          </button>
         </div>
 
         {/* Stat cards row */}
-        <div className="mb-6 grid grid-cols-2 gap-4 lg:grid-cols-5">
+        <div className="mb-6 grid grid-cols-2 gap-4 lg:grid-cols-2">
           {CASE_STATS.map((stat, i) => (
             <Motion.div
               key={stat.label}
@@ -597,6 +640,53 @@ const CasesListPage = ({ displayName }) => {
               </p>
             </Motion.div>
           ))}
+        </div>
+
+        {/* Insights cards */}
+        <div className="mb-6">
+          <h2 className="mb-3 font-dmSans text-base font-semibold text-gray-900">Insights &amp; Recommendations</h2>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+            {QUICK_ACTIONS.map((item, i) => (
+              <Motion.button
+                key={item.id}
+                type="button"
+                onClick={() => onNavigate?.(item.id)}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.06, duration: 0.25 }}
+                whileHover={{ y: -2 }}
+                className="group w-full rounded-xl border border-gray-200 bg-white px-5 py-5 text-left shadow-sm transition-all duration-200 hover:border-red-100 hover:shadow-lg"
+              >
+                {/* Icon badge */}
+                <div
+                  className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl text-white shadow-sm"
+                  style={{ background: "linear-gradient(135deg, #E0334A 0%, #C42B3E 100%)" }}
+                >
+                  {item.icon}
+                </div>
+
+                <p className="font-dmSans text-base font-semibold text-gray-900">{item.title}</p>
+                <p className="mt-2 font-dmSans text-sm leading-relaxed text-gray-500">{item.description}</p>
+
+                {/* CTA row */}
+                <div className="mt-4 flex items-center gap-1.5">
+                  <span
+                    className="font-dmSans text-sm font-semibold transition-all duration-200 group-hover:underline"
+                    style={{ color: "#E0334A" }}
+                  >
+                    {item.cta}
+                  </span>
+                  <svg
+                    className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
+                    style={{ color: "#E0334A" }}
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
+              </Motion.button>
+            ))}
+          </div>
         </div>
 
         {/* Cases card */}
@@ -697,7 +787,7 @@ const CasesListPage = ({ displayName }) => {
                       {c.nextHearing}
                     </td>
                     <td className="px-5 py-5">
-                      <span className="inline-flex items-center rounded-full bg-emerald-50 px-3 py-1 font-dmSans text-xs font-semibold text-emerald-700 ring-1 ring-emerald-200">
+                      <span className="inline-flex items-center rounded-full px-3 py-1 font-dmSans text-xs font-semibold" style={{ backgroundColor: "#FEF2F2", color: "#E0334A", boxShadow: "inset 0 0 0 1px #FECACA" }}>
                         {c.status}
                       </span>
                     </td>
@@ -791,7 +881,10 @@ const CasesListPage = ({ displayName }) => {
   )
 }
 
-CasesListPage.propTypes = { displayName: PropTypes.string }
+CasesListPage.propTypes = {
+  displayName: PropTypes.string,
+  onNavigate: PropTypes.func,
+}
 
 /* ══════════════════ Main Dashboard ══════════════════ */
 const DashboardPage = ({ user, onLogout }) => {
@@ -812,7 +905,7 @@ const DashboardPage = ({ user, onLogout }) => {
 
   const renderContent = () => {
     switch (activeNav) {
-      case "dashboard": return <CasesListPage displayName={displayName} />
+      case "dashboard": return <CasesListPage displayName={displayName} onNavigate={setActiveNav} />
       case "cases":     return <CaseBriefs />
       default:          return <Placeholder label={PRIMARY_NAV.find(n => n.id === activeNav)?.label || SECONDARY_NAV.find(n => n.id === activeNav)?.label} />
     }
@@ -824,7 +917,7 @@ const DashboardPage = ({ user, onLogout }) => {
       <div className={`flex items-center gap-3 px-4 py-6 ${collapsed ? "justify-center" : ""}`}>
         <img src={gavelIcon} alt="" aria-hidden="true" className="h-10 w-10 flex-shrink-0 rounded-xl" />
         {!collapsed && (
-          <span className="flex items-start gap-0.5 font-playfair text-2xl font-extrabold leading-none tracking-tight text-white">
+          <span className="flex items-start gap-0.5 font-dmSans text-2xl font-extrabold leading-none tracking-tight text-white">
             JuriNex
             <span
               aria-hidden="true"

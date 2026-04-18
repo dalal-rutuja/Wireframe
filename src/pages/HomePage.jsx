@@ -10,8 +10,8 @@ import Footer from "../components/landing/Footer"
 import BookDemoModal from "../components/landing/BookDemoModal"
 import PolicyModal from "../components/landing/PolicyModal"
 
-// Popup schedule: first show → 15 s, after 1st close → 30 s, after 2nd close → 60 s
-const POPUP_DELAYS = [15_000, 30_000, 60_000]
+// Popup schedule: first show → 15 s, after 1st close → 20 s, after 2nd close → 30 s
+const POPUP_DELAYS = [15_000, 20_000, 30_000]
 
 /**
  * Marketing landing page composition.

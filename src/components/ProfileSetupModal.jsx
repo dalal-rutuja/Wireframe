@@ -118,7 +118,7 @@ const ProfileSetupModal = ({ isOpen, onComplete, defaultName = "", defaultEmail 
                       <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
                   </div>
-                  <h2 id="profile-modal-heading" className="font-playfair text-2xl font-bold text-juri-ink">
+                  <h2 id="profile-modal-heading" className="font-dmSans text-2xl font-bold text-juri-ink">
                     Set Up Your Profile
                   </h2>
                   <p className="mt-1 font-dmSans text-sm text-juri-muted">
@@ -168,12 +168,17 @@ const ProfileSetupModal = ({ isOpen, onComplete, defaultName = "", defaultEmail 
                     >
                       {PRACTICE_AREAS_WITH_OTHER.map((area) => {
                         const checked = selectedAreas.includes(area)
+                        const isOther = area === OTHER_PRACTICE_AREA
                         return (
                           <button
                             key={area}
                             type="button"
                             onClick={() => toggleArea(area)}
-                            className="inline-flex h-full min-h-[2.75rem] w-full items-start gap-2 rounded-lg border border-transparent bg-white px-2.5 py-2 font-dmSans text-left text-sm text-juri-ink shadow-sm transition hover:border-gold/35 hover:bg-red-50/80"
+                            className={`inline-flex h-full min-h-[2.75rem] w-full items-start gap-2 rounded-lg border px-2.5 py-2 font-dmSans text-left text-sm shadow-sm transition ${
+                              isOther
+                                ? "border-[#f2a8b3] bg-red-50/80 text-juri-ink hover:border-[#ec8f9d] hover:bg-red-100/70"
+                                : "border-transparent bg-white text-juri-ink hover:border-gold/35 hover:bg-red-50/80"
+                            }`}
                           >
                             <span
                               className={`flex h-4 w-4 flex-shrink-0 items-center justify-center rounded border transition ${
@@ -187,7 +192,9 @@ const ProfileSetupModal = ({ isOpen, onComplete, defaultName = "", defaultEmail 
                                 </svg>
                               )}
                             </span>
-                            <span className="min-w-0 whitespace-normal leading-snug">{area}</span>
+                            <span className={`min-w-0 whitespace-normal leading-snug ${isOther ? "font-semibold" : ""}`}>
+                              {area}
+                            </span>
                           </button>
                         )
                       })}

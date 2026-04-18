@@ -228,7 +228,7 @@ const RegisterPage = ({ onBackToLogin, onBackToHome }) => {
 
           {/* Heading */}
           <div className="mb-6 text-center">
-            <h1 className="font-playfair text-2xl font-bold text-juri-ink">
+            <h1 className="font-dmSans text-2xl font-bold text-juri-ink">
               Create Your JuriNex Account
             </h1>
           </div>
@@ -541,7 +541,7 @@ const RegisterPage = ({ onBackToLogin, onBackToHome }) => {
 
         <div className="absolute inset-0 flex flex-col justify-end p-12 pb-40">
           <Motion.h2
-            className="font-playfair text-4xl font-bold leading-tight text-white xl:text-5xl"
+            className="font-dmSans text-4xl font-bold leading-tight text-white xl:text-5xl"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.2 } }}
           >
