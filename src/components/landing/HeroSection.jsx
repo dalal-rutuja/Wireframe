@@ -24,7 +24,7 @@ const fadeUp = {
 /**
  * Full-viewport hero — red & white theme.
  */
-const HeroSection = ({ onRequestDemo, onLogin } = {}) => {
+const HeroSection = ({ onRequestDemo, onTakeTour } = {}) => {
 
   return (
     <section
@@ -103,6 +103,18 @@ const HeroSection = ({ onRequestDemo, onLogin } = {}) => {
           >
             <Motion.button
               type="button"
+              className="rounded-full border border-gold/60 bg-gold/90 px-8 py-3 text-center text-sm font-semibold text-white shadow-md shadow-gold/30"
+              aria-label="Take a product tour of JuriNex"
+              onClick={onTakeTour}
+              whileHover={{ scale: 1.05, boxShadow: "0 8px 28px rgba(224,51,74,0.45)" }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 20 }}
+            >
+              Take a tour
+            </Motion.button>
+
+            <Motion.button
+              type="button"
               className="rounded-full bg-gold px-8 py-3 text-center text-sm font-semibold text-white shadow-md shadow-gold/30"
               aria-label="Request a demo of JuriNex"
               onClick={onRequestDemo}
@@ -111,18 +123,6 @@ const HeroSection = ({ onRequestDemo, onLogin } = {}) => {
               transition={{ type: "spring", stiffness: 400, damping: 20 }}
             >
               {HERO_COPY.primaryCta}
-            </Motion.button>
-
-            <Motion.button
-              type="button"
-              className="rounded-full border border-white/40 bg-white/10 px-8 py-3 text-center text-sm font-semibold text-white shadow-sm backdrop-blur-sm"
-              aria-label="Log in to your JuriNex account"
-              onClick={onLogin}
-              whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.2)" }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 400, damping: 20 }}
-            >
-              {HERO_COPY.secondaryCta}
             </Motion.button>
           </Motion.div>
         </Motion.div>
@@ -153,7 +153,7 @@ const HeroSection = ({ onRequestDemo, onLogin } = {}) => {
 
 HeroSection.propTypes = {
   onRequestDemo: PropTypes.func,
-  onLogin: PropTypes.func,
+  onTakeTour: PropTypes.func,
 }
 
 export default HeroSection

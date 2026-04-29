@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react"
 import PropTypes from "prop-types"
 import Navbar from "../components/landing/Navbar"
 import HeroSection from "../components/landing/HeroSection"
+import TourEmbedSection from "../components/landing/TourEmbedSection"
 import FeaturesSection from "../components/landing/FeaturesSection"
 import TestimonialsSection from "../components/landing/TestimonialsSection"
 import PricingSection from "../components/landing/PricingSection"
@@ -10,8 +11,8 @@ import Footer from "../components/landing/Footer"
 import BookDemoModal from "../components/landing/BookDemoModal"
 import PolicyModal from "../components/landing/PolicyModal"
 
-// Popup schedule: first show → 15 s, after 1st close → 20 s, after 2nd close → 30 s
-const POPUP_DELAYS = [15_000, 20_000, 30_000]
+// Popup schedule: show once, 3 minutes after page load
+const POPUP_DELAYS = [180_000]
 
 /**
  * Marketing landing page composition.
@@ -53,6 +54,11 @@ const HomePage = ({ onNavigateLogin, onNavigateContact, pendingSection, onPendin
   }
 
   const openDemo = () => setDemoOpen(true)
+  const openTour = () => {
+    if (window.Supademo?.open) {
+      window.Supademo.open("cmojngfoo6l9qza2ix8047946")
+    }
+  }
 
   const handleLogin = () => {
     onNavigateLogin?.()
@@ -62,7 +68,8 @@ const HomePage = ({ onNavigateLogin, onNavigateContact, pendingSection, onPendin
     <div className="min-h-screen bg-juri-canvas">
       <Navbar onRequestDemo={openDemo} onLogin={handleLogin} />
       <main>
-        <HeroSection onRequestDemo={openDemo} onLogin={handleLogin} />
+        <HeroSection onRequestDemo={openDemo} onTakeTour={openTour} />
+        <TourEmbedSection />
         <FeaturesSection />
         <TestimonialsSection />
         <PricingSection />
